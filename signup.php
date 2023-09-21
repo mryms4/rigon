@@ -1,6 +1,5 @@
 <?php 
 require 'connection.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -67,29 +66,39 @@ require 'connection.php';
 
     require 'table.php';
 
-
+    
+    
+    
     if (isset($_POST['submit'])) {
+        
         $fname = $_POST['fname'];
         $lname = $_POST['lname']; 
         $phone = $_POST['phone'];
         $email = $_POST['email'];
         $psw = $_POST['psw'];
-
         if (empty(trim($fname)) || empty(trim($lname)) || empty(trim($phone)) || empty(trim($email)) || empty(trim($psw))) {
             echo "<div class='alert alert-danger'>خطا: تمامی فیلدها را باید پر کنید.</div>";
-            exit();
+            // exit();
         }
+        
 
     $sql = "INSERT INTO signup (fname, lname, phone, email, psw)
         VALUES ('$fname', '$lname', '$phone', '$email', '$psw')";
 
-
+    
     $result = mysqli_query($conn, $sql);
+    
+    
     print_r("result:");
     print_r($result);
+    
+    
     if ($result) {
         mysqli_close($conn);
+        session_start();
+        $_SESSION['user_id'] = $email;
         header("Location: " . $baseUrl . "index.php");
+
         exit();
     } else {
         echo "خطا در ثبت اطلاعات: " . mysqli_error($conn);
@@ -97,6 +106,9 @@ require 'connection.php';
 
 }
 ?> 
+
+  
+  <a href="login.php" class="btn btn-secondary"> ایا حساب کاربری دارید؟  </a>
 
   
 </body>

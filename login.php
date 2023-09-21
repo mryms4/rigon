@@ -43,14 +43,14 @@
             $password = $_POST['psw'];
 
             // بررسی صحت نام کاربری و رمز عبور
-            $sql = "SELECT * FROM signup WHERE fname = '$username' and psw = '$password'";
+            $sql = "SELECT * FROM signup WHERE email = '$username' and psw = '$password'";
             $result = mysqli_query($conn, $sql);
 
             if(mysqli_num_rows($result) === 1){ // اگر اطلاعات ورودی صحیح بود
                 $row = mysqli_fetch_assoc($result);
 
                 $_SESSION['loggedin'] = true; // تنظیم وضعیت لاگین کاربر
-                $_SESSION['fname'] = $username; // ذخیره نام کاربری در سشن
+                $_SESSION['email'] = $username; // ذخیره نام کاربری در سشن
 
                 header("Location: index.php"); // انتقال به صفحه داشبورد
             }
@@ -59,6 +59,11 @@
             }
         }
     ?>
+
+
+  <a href="signup.php" class="btn btn-secondary">حساب کاربری ندارید ازینجا ثبت نام کنید  </a>
+
+  
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 

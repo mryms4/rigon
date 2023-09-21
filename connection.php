@@ -1,6 +1,6 @@
 <?php
 
-$baseUrl = "http://localhost/maryamsoufi7979";
+$baseUrl = "http://localhost/";
 // اتصال به دیتابیس
 $conn = mysqli_connect('localhost', 'root', 'maryam1379', 'mydb');
 

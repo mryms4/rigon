@@ -12,10 +12,7 @@
 require 'connection.php';
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: signup.php');
-    exit();
-}
+
 
 // دریافت یادداشت‌ها از دیتابیس
 $sql = "SELECT * FROM note";
@@ -27,7 +24,16 @@ if (!$result) {
 ?>
 
     <h1 class="text-center">دفترچه یادداشت</h1>
-
+    <?php 
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: signup.php');
+        exit();
+    }else{
+        
+        echo '<h2> hi ' . $_SESSION['user_id'] .'</h2> <a href="logout.php" class="btn btn-secondary">خارج شدن</a>';
+    }
+    ?>
+    
     <div class="container">
         <div class="row">
             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
