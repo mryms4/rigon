@@ -1,6 +1,5 @@
 <?php 
-
-    require 'connection.php';
+require 'connection.php';
 
 ?>
 
@@ -63,6 +62,9 @@
     
 
 <?php
+
+
+
     require 'table.php';
 
 
